@@ -16,7 +16,7 @@ namespace Rust.FluentAssertion
 
             if (!string.IsNullOrWhiteSpace(variableName))
             {
-                AttrachedVariableName = " On " + variableName + " ";
+                AttrachedVariableName = " on " + variableName + " ";
             }
             else
             {

@@ -19,6 +19,14 @@
                 scope.ExpressionName));
         }
 
+        public static AssertObject<T, TNew> Have<T, TProperty, TNew>(this AssertScope<T, TProperty> assertScope, Expression<Func<T, TNew>> expression)
+        {
+            return new AssertObject<T, TNew>(On(
+                assertScope.Subject,
+                   expression,
+                   assertScope.VariableName));
+        }
+
         public static ValidationScope<T, TProperty> Be<T, TProperty>(this AssertObject<T, TProperty> assertObject, TProperty expect)
         {
             assertObject.AreEqual(expect);

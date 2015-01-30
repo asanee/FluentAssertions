@@ -13,6 +13,13 @@
         private class MyClass2
         {
             public int Value { get; set; }
+
+            public MyClass3 Class3 { get; set; }
+        }
+
+        class MyClass3
+        {
+            public string ValueC3 { get; set; }
         }
 
         [TestMethod]
@@ -49,11 +56,16 @@
         [TestMethod]
         public void ExtensionAndTest()
         {
-            var c2 = new MyClass2 { Value = 5 };
+            var c2 = new MyClass2 { Value = 5, Class3 = new MyClass3() };
 
             var c1 = new MyClass1 { Class2 = c2 };
 
-            c1.On(x => x.Class2, "c1").Should().Not.Be(null).And(x => x.Value).Be(5);
+            c1.On(x => x.Class2, "c1")
+                .Should().Not.Be(null)
+                .And(x => x.Value).Be(5)
+                .And
+                    .Have(x => x.Class3).Not.Be(null)
+                    .And(x => x.ValueC3).Not.Be(string.Empty);
         }
     }
 }
